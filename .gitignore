@@ -1,0 +1,12 @@
+# Ignore the actual secrets
+config.py
+credentials.json
+token.json
+
+# Ignore logs
+logs/
+old_logs/
+
+# Ignore Python's automatic cache files
+__pycache__/
+*.pyc

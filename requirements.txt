@@ -1,0 +1,6 @@
+# Python Version: 3.13.7
+# Install these via setup_project.bat
+google_api_python_client==2.183.0
+google_auth_oauthlib==1.2.2
+protobuf==7.34.1
+selenium==4.43.0
