@@ -30,7 +30,12 @@ def get_valid_creds():
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
-                creds = flow.run_local_server(port=0)
+                is_docker = os.path.exists("/.dockerenv")
+                if is_docker:
+                    logger.info("Running in Docker. Starting OAuth local server on port 8080. Please ensure port 8080 is exposed/mapped.")
+                    creds = flow.run_local_server(host="localhost", bind_addr="0.0.0.0", port=8080, open_browser=False)
+                else:
+                    creds = flow.run_local_server(port=0)
             # Save the credentials for the next run
             with open("token.json", "w") as token:
                 token.write(creds.to_json())

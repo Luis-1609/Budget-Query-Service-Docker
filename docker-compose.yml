@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  scraper:
+    build: .
+    container_name: budget_query_scraper
+    environment:
+      - TZ=America/Lima
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

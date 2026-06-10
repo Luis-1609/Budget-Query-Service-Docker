@@ -1,5 +1,4 @@
 # Ignore the actual secrets
-config.py
 credentials.json
 token.json
 
@@ -10,3 +9,7 @@ old_logs/
 # Ignore Python's automatic cache files
 __pycache__/
 *.pyc
+
+#Variables de entorno
+.env
+.env.local
