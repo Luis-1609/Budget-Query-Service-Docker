@@ -28,4 +28,4 @@ COPY . .
 EXPOSE 8080
 
 # Run the scheduler service
-CMD ["python", "scheduler_service.py"]
+CMD ["python", "src/scheduler_service.py"]
