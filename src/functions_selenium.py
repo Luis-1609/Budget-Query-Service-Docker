@@ -10,6 +10,8 @@ from selenium.webdriver.support.ui import Select
 from decorators import *
 from exceptions import *
 import logging
+import platform
+
 
 # https://googlechromelabs.github.io/chrome-for-testing/#stable
 WAIT_TIME = 3
@@ -21,6 +23,14 @@ def get_chrome_driver():
     try:
         #service = Service(executable_path="chromedriver.exe")
         options = Options()
+
+        # If running inside Docker (Linux) and on an ARM machine (Cloud), set the binary to Chromium.
+        # On local Windows, platform.system() is "Windows" (uses standard Chrome).
+        # On local Docker (AMD64), platform.machine() is "x86_64" (uses official Google Chrome).
+        if platform.system() != "Windows":
+            machine = platform.machine().lower()
+            if "arm" in machine or "aarch64" in machine:
+                options.binary_location = "/usr/bin/chromium"
 
         # Silence the error messages from Chrome console
         options.add_argument('--log-level=3')
